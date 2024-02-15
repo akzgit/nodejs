@@ -1,0 +1,7 @@
+<form (ngSubmit)="submitForm()">
+  <label for="title"> Title : </label >
+  <input [(ngModel)] = "task.title" name="title" placeholder="enter your Title" required/><br>
+  <label for="description"> Description : </label>
+  <input [(ngModel)] = "task.description" name="description" placeholder="enter your Description" required>
+  <button type="submit"> {{ editing ? 'Update Task': 'Add Task'}} </button>
+</form>

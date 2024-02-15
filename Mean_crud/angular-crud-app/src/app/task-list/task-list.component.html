@@ -1,0 +1,24 @@
+<div class="task-list">
+  <h2>Tasks</h2>
+  <ul>
+    <li *ngFor="let task of tasks">
+      <span>{{ task.title }} - {{ task.description }}</span>
+      <button (click)="deleteTask(task._id)">Delete</button>
+      <button (click)="editTask(task)">Edit</button>
+    </li>
+  </ul>
+</div>
+
+<div class="edit-task-form" *ngIf="editingTask">
+  <h3>Editing Task</h3>
+  <form (ngSubmit)="updateTask()">
+    <label for="title">Title:</label>
+    <input id="title" [(ngModel)]="editingTask.title" name="title" required>
+
+    <label for="description">Description:</label>
+    <input id="description" [(ngModel)]="editingTask.description" name="description" required>
+
+    <button type="submit">Update</button>
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>
