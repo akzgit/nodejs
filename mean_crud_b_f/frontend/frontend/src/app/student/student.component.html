@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="card">
+      <h3>Student Registration form</h3>
+      <form>
+          <div class="form-group">
+              <label>Name</label>
+              <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone : true}" class="form-control" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+              <label>Address</label>
+              <input type="text" [(ngModel)]="address" [ngModelOptions]="{standalone : true}" class="form-control" id="address" placeholder="Write your address">
+          </div>
+          <div class="form-group">
+              <label>Phone No.</label>
+              <input type="text" [(ngModel)]="phone" [ngModelOptions]="{standalone : true}" class="form-control" id="phone" placeholder="Enter your Phone no">
+          </div>
+
+          <button type="submit" class="btn btn-success" (click)="save()">Submit</button>
+      </form>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h3>student table</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col">Name</th>
+        <th class="col">Address</th>
+        <th class="col">Phone no.</th>
+        <th class="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let studentData of studentArray">
+        <td>{{studentData.name }}</td>
+        <td>{{ studentData.address }}</td>
+        <td>{{ studentData.phone }}</td>
+        <td>
+          <button type="button" class="btn btn-success" (click)="setUpdate(studentData)">Edit</button>
+          <button type="button" class="btn btn-danger" (click)="setDelete(studentData)">Delete</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
