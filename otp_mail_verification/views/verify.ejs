@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+</head>
+<body>
+    <h1>Enter the OTP send to your Email:</h1>
+    <form action="/verify" method="post">
+        <label for="userotp">otp:</label>
+        <input type="text" name="userotp">
+        <button type="submit">Submit OTP</button><br><br>
+
+        <button type="button" id="regenerate-otp">Regenerate OTP</button>
+
+    </form>
+    <script>
+        document.getElementById('regenerate-otp').addEventListener('click', function() {
+            fetch('/regenerate-otp')
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        });
+        </script>
+</body>
+</html>

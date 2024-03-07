@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        #card-element{
+            border:1 px solid #cccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stripe Payment Gateway</h1>
+<!-- we have created a form with card elements which will integrate the form -->
+    <form id="payment-form" action="">
+        <label for="card-element">
+            Enter the card details
+        </label>
+        <div id="card-element">
+
+        </div>
+        <button id="submit-button" type="submit">Pay Now</button>
+    </form>
+
+    <script>
+        //created the instance for the stripe and pasted the api key from the stripe dashboard
+        const stripe=Stripe('pk_test_51Op5fMSHvs183p0PqOqSy897K4lQ4YgWodzh1ZSEiid9IwCLhQYiDvUkQmNs7H3eDlZsqGLoHobezUKuV1HFjjNr00Ti6XsikM');
+        //created the instance for the card element which needed to be created in the division we created
+        const elements=stripe.elements();
+        const cardElement =elements.create('card');
+        cardElement.mount('#card-element');
+        const form=document.getElementById('payment-form');
+        
+        form.addEventListener('submit',async(event)=>{
+            event.preventDefault();
+            //generated tokens
+            const {token,error} =await stripe.createToken(cardElement);
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log(token);
+            }
+        });
+    </script>
+</body>
+</html>
